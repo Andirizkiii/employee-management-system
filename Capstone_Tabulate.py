@@ -3,6 +3,8 @@
 
 #DATA PERUSAHAAN KARYAWAN SUKSES
 
+from tabulate import tabulate
+
 data_karyawan = [
     {"id": 1, "nama": "Andi", "jabatan": "Manager", "divisi": "Operasional", "gaji": 15000000},
     {"id": 2, "nama": "Budi", "jabatan": "Staff", "divisi": "Finance", "gaji": 7000000},
@@ -13,13 +15,15 @@ data_karyawan = [
     {"id": 7, "nama": "Gita", "jabatan": "Manager", "divisi": "IT", "gaji": 15000000},
     {"id": 8, "nama": "Hadi", "jabatan": "Staff", "divisi": "Logistik", "gaji": 7500000},
     {"id": 9, "nama": "Indah", "jabatan": "Supervisor", "divisi": "Produksi", "gaji": 10500000},
-    {"id": 10, "nama": "Joko", "jabatan": "Admin", "divisi": "General Affair", "gaji": 6500000},
+    {"id": 10, "nama": "Joko", "jabatan": "Admin", "divisi": "General Affair", "gaji": 6500000}
 ]
 
 def tampilkan_data():
     print("\n=== DATA KARYAWAN ===")
     headers = ["ID", "Nama", "Jabatan", "Divisi", "Gaji"]
-    rows = [[d['id'], d['nama'], d['jabatan'], d['divisi'], d['gaji']] for d in data_karyawan]
+    rows = []
+    for d in data_karyawan:
+        rows.append([d['id'], d['nama'], d['jabatan'], d['divisi'], d['gaji']])
     print(tabulate(rows, headers=headers, tablefmt="grid", numalign="right", stralign="left"))
     input("\nTekan Enter untuk kembali ke menu...")
 
@@ -84,7 +88,5 @@ def menu_utama():
             break
         else:
             print("❗ Pilihan tidak valid, coba lagi.")
-
-from tabulate import tabulate
 
 menu_utama()
